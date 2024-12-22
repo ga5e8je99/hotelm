@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Booking</title>
+    <!-- إضافة Bootstrap لتحسين الواجهة -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #eef2f7;
+            font-family: 'Roboto', sans-serif;
+            padding: 20px;
+        }
+
+        .card {
+            border: none;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .card img {
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+        }
+
+        .card-body {
+            text-align: center;
+            background: linear-gradient(145deg, #ffffff, #f3f4f6);
+            padding: 20px;
+        }
+
+        .star-rating {
+            font-size: 1.2rem;
+            color: #ffc107;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .card-text {
+            color: #6c757d;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            transform: translateY(-3px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #343a40;
+        }
+
+        .heading h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        .heading p {
+            font-size: 1.2rem;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="heading">
+            <h1>Car Booking Details</h1>
+            <p>Review your selected car and available models.</p>
+        </div>
+        <div id="carDetails" class="row">
+            <!-- سيتم عرض تفاصيل السيارة هنا -->
+        </div>
+        <div id="carModels" class="row">
+            <!-- سيتم عرض نماذج السيارات هنا -->
+        </div>
+    </div>
+
+    <script>
+        // استرجاع بيانات السيارة من LocalStorage
+        const selectedCar = JSON.parse(localStorage.getItem('selectedCar'));
+    
+        if (selectedCar) {
+            const carDetailsContainer = document.getElementById('carDetails');
+            carDetailsContainer.innerHTML = `
+                <div class="col-md-6 offset-md-3">
+                    <div class='card'>
+                        <img src="${selectedCar.image}" class="card-img-top" alt="${selectedCar.name}">
+                        <div class="card-body">
+                            <h5 class="card-title">${selectedCar.name}</h5>
+                            <p class="star-rating">⭐ ${selectedCar.rating}</p>
+                            <p class="card-text"><strong>Location:</strong> ${selectedCar.location}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+    
+            const carModelsContainer = document.getElementById('carModels');
+            const models = selectedCar.models;
+    
+            if (models) {
+                for (const key in models) {
+                    const model = models[key];
+                    carModelsContainer.innerHTML += `
+                        <div class="col-md-4">
+                            <div class='card'>
+                                <img src="${model.image}" class="card-img-top" alt="${model.type}">
+                                <div class="card-body">
+                                    <h5 class="card-title">${model.type}</h5>
+                                    <p class="star-rating">Max People: ${model.maxPeople}</p>
+                                    <p class="card-text"><strong>Price:</strong> $${model.price}</p>
+                                    <p class="card-text"><strong>Features:</strong> ${model.features}</p>
+                                    <button class="btn btn-primary" onclick="bookNow(${JSON.stringify(model).replace(/"/g, '&quot;')})">Book Now</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+        } else {
+            alert("No car data available!");
+            window.location.href = 'index.html'; // إعادة التوجيه إلى الصفحة الرئيسية
+        }
+    
+        // وظيفة لحفظ بيانات النموذج والانتقال إلى صفحة الحجز
+        function bookNow(model) {
+            localStorage.setItem('selectedModel', JSON.stringify(model));
+            window.location.href = 'fbc.html'; // الانتقال إلى صفحة الحجز
+        }
+    </script>
+    
+    
+</body>
+</html>

@@ -1,20 +1,3 @@
-document.addEventListener("DOMContentLoaded", function () {
-  // تحقق من وجود اسم المستخدم في localStorage
-  const username = localStorage.getItem("username");
-
-  if (username) {
-      // إظهار قسم المستخدم وإخفاء زر تسجيل الدخول
-      document.getElementById("user-section").style.display = "flex";
-      document.getElementById("username").textContent = username;
-      document.getElementById("login-section").style.display = "none";
-      document.getElementById("user-section").style.display = "flex";
-      
-  } else {
-      // إظهار زر تسجيل الدخول إذا لم يكن المستخدم مسجل الدخول
-      document.getElementById("login-section").style.display = "flex";
-      document.getElementById("user-section").style.display = "none";
-  }
-});
 
 // وظيفة تسجيل الخروج
 function handleLogout() {
@@ -29,8 +12,8 @@ function handleLogout() {
 document.addEventListener('DOMContentLoaded', function() {
     const username = localStorage.getItem('username');
     if (username) {
-      document.getElementById("username").textContent = username;
-      document.getElementById("username").textContent = username;
+      // document.getElementById("username").textContent = username;
+      // document.getElementById("username").textContent = username;
       document.getElementById("login-section").style.display = "none";
       document.getElementById("user-section").style.display = "flex";
     }
@@ -41,6 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
     
 });
+
 //////////////////////////////////////////////////////////
 document.addEventListener('DOMContentLoaded', (event) => {
   const userName = localStorage.getItem('username');
@@ -63,7 +47,9 @@ let pages=[
     document.getElementById('home'),
     document.getElementById('hotels'),
     document.getElementById('feedback'),
-    document.getElementById('contact')
+    document.getElementById('contact'),
+    document.getElementById("car"),
+    document.getElementById("trou")
 ];
 
 let list;
@@ -89,16 +75,29 @@ for (let i = 0; i < linkes.length; i++) {
                 document.getElementById("feedback").classList.add("active-page");
                 console.log('feedback');
             }
-            else if (list===document.getElementById('contact-page')) {
+            else if (list===document.getElementById('car-page')) {
                 pages.forEach(pages=>pages.classList.remove('active-page'));
-                document.getElementById("contact").classList.add("active-page");
-                console.log('contact');
+                document.getElementById("car").classList.add("active-page");
+                console.log('car');
             }
+            else if (list===document.getElementById('contact-page')) {
+              pages.forEach(pages=>pages.classList.remove('active-page'));
+              document.getElementById("contact").classList.add("active-page");
+              console.log('contact');
+          }
+            else if (list===document.getElementById('trou-page')) {
+              pages.forEach(pages=>pages.classList.remove('active-page'));
+              document.getElementById("trou").classList.add("active-page");
+              console.log('trou');
+          }
+          }
+          
+
             
             
-        }
+        })
     
-})}
+};
 document.addEventListener("DOMContentLoaded", () => {
   const applyFilters = document.getElementById("apply-filters");
   const hotelSection = document.getElementById("hotels-section");
@@ -131,7 +130,137 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+  const applyFiltersCar = document.getElementById("apply-filters-car");
+  const carSection = document.getElementById("car-section");
+
+  applyFiltersCar.addEventListener("click", () => {
+    const searchName = document.getElementById("search-car-name").value.toLowerCase();
+    const selectedCarType = document.getElementById("filter-model").value;
+    const selectedRatings = Array.from(
+      document.querySelectorAll('input[type="checkbox"]:checked')
+    ).map(cb => cb.value); // Get all selected checkbox values
+
+    const carCards = carSection.querySelectorAll(".car-card"); // Use the class for car cards
+
+    carCards.forEach(card => {
+      const title = card.querySelector(".card-title").textContent.toLowerCase();
+      const type = card.querySelector(".model").textContent.toLowerCase();
+      const rating = card.querySelector(".star-rating").textContent.trim().length; // Number of stars
+
+      const matchesName = !searchName || title.includes(searchName);
+      const matchesType =
+        selectedCarType === "all" || type.includes(selectedCarType.toLowerCase());
+      const matchesRating =
+        selectedRatings.length === 0 || selectedRatings.includes(rating.toString());
+
+      // Show or hide the card based on matching conditions
+      if (matchesName && matchesType && matchesRating) {
+        card.style.display = "";
+      } else {
+        card.style.display = "none";
+      }
+    });
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  const applyFilterstr = document.getElementById("apply-filters-tours");
+  const troSection = document.getElementById("tour-section");
+
+  applyFilterstr.addEventListener("click", () => {
+    const searchName = document.getElementById("search-tr-name").value.toLowerCase();
+    const selectedtrType = document.getElementById("filter-toe").value;
+    const selectedRatings = Array.from(
+      document.querySelectorAll('input[type="checkbox"]:checked')
+    ).map(cb => cb.value); // Get all selected checkbox values
+
+    const trCards = troSection.querySelectorAll(".tour-card"); // Use the class for car cards
+
+    trCards.forEach(card => {
+      const title = card.querySelector(".card-title").textContent.toLowerCase();
+      const type = card.querySelector(".tr").textContent.toLowerCase();
+      const rating = card.querySelector(".star-rating").textContent.trim().length; // Number of stars
+
+      const matchesName = !searchName || title.includes(searchName);
+      const matchesType =
+      selectedtrType === "all" || type.includes(selectedtrType.toLowerCase());
+      const matchesRating =
+        selectedRatings.length === 0 || selectedRatings.includes(rating.toString());
+
+      // Show or hide the card based on matching conditions
+      if (matchesName && matchesType && matchesRating) {
+        card.style.display = "";
+      } else {
+        card.style.display = "none";
+      }
+    });
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 document.getElementById('feedbackForm').addEventListener('submit', function(event) {
   event.preventDefault();  // Prevent the form from refreshing the page
 
@@ -181,7 +310,7 @@ document.getElementById('contactForm').addEventListener('submit', function(event
       <div class="card-body">
         <h5 class="card-title">${hotel.name}</h5>
         <p><span class="star-rating">${hotel.rating}</span></p>
-        <p class="card-text">Location: ${hotel.location}</p>
+        <p class="card-text">${hotel.location}</p>
         <p class="card-text">Rooms Available: ${hotel.roomNumber}</p>
       </div>
       </div>
@@ -193,4 +322,117 @@ document.getElementById('contactForm').addEventListener('submit', function(event
     });
     hotelsContainer.appendChild(hotelCard);
   }
-  
+   
+
+
+  const carContainer = document.getElementById('car-section');
+
+  for (const key in cars) {
+    const car = cars[key];
+    const carCard = document.createElement('div');
+    carCard.className = 'car-card';
+    carCard.innerHTML = `
+    <div class='card'>
+      <img src="${car.image}" class="card-img-top" alt="${car.name}">
+      <div class="card-body">
+        <h5 class="card-title">${car.name}</h5>
+        <p><span class="star-rating">${car.rating}</span></p>
+        <p class="card-text">Description: ${car.description}</p>
+        <p class="card-text model">Models Available: ${car.models}</p>
+      </div>
+    </div>
+    `;
+    carCard.addEventListener('click', () => {
+        // تخزين بيانات السيارة في LocalStorage
+        localStorage.setItem('selectedCar', JSON.stringify(car));
+        // الانتقال إلى صفحة الحجز
+        window.open('./bookingCar.html');
+    });
+    carContainer.appendChild(carCard);
+}
+
+const tourContainer = document.getElementById('tour-section');
+
+for (const key in tours) {
+  const tour = tours[key];
+  const tourCard = document.createElement('div');
+  tourCard.className = 'col-md-4 tour-card';
+  tourCard.innerHTML = `
+    <div class="card">
+      <img src="${tour.image}" class="card-img-top" alt="${tour.name}">
+      <div class="card-body">
+        <h5 class="card-title">${tour.name}</h5>
+        <p class="card-text tr"><strong>Location:</strong> ${tour.location}</p>
+        <p class="card-text star-rating"><strong>Rating:</strong> ${tour.rating}</p>
+        <p class="card-text">${tour.description}</p>
+        <button class="btn btn-primary">View Details</button>
+      </div>
+    </div>
+  `;
+  tourCard.querySelector('button').addEventListener('click', () => {
+    localStorage.setItem('selectedTour', JSON.stringify(tour));
+    window.open('./bookingTour.html');
+  });
+  tourContainer.appendChild(tourCard);
+}
+let itemss = document.querySelectorAll('.slider .list .item');
+let next = document.getElementById('next');
+let prev = document.getElementById('prev');
+let thumbnails = document.querySelectorAll('.thumbnail .item');
+
+// config param
+let countItem = itemss.length;
+let itemActive = 0;
+// event next click
+next.onclick = function(){
+    itemActive = itemActive + 1;
+    if(itemActive >= countItem){
+        itemActive = 0;
+    }
+    showSlider();
+}
+//event prev click
+prev.onclick = function(){
+    itemActive = itemActive - 1;
+    if(itemActive < 0){
+        itemActive = countItem - 1;
+    }
+    showSlider();
+}
+// auto run slider
+let refreshInterval = setInterval(() => {
+    next.click();
+}, 3500)
+function showSlider(){
+    // remove item active old
+    let itemActiveOld = document.querySelector('.slider .list .item.active');
+    let thumbnailActiveOld = document.querySelector('.thumbnail .item.active');
+    itemActiveOld.classList.remove('active');
+    thumbnailActiveOld.classList.remove('active');
+
+    // active new item
+    itemss[itemActive].classList.add('active');
+    thumbnails[itemActive].classList.add('active');
+    setPositionThumbnail();
+
+    // clear auto time run slider
+    clearInterval(refreshInterval);
+    refreshInterval = setInterval(() => {
+        next.click();
+    }, 3500)
+}
+function setPositionThumbnail () {
+    let thumbnailActive = document.querySelector('.thumbnail .item.active');
+    let rect = thumbnailActive.getBoundingClientRect();
+    if (rect.left < 0 || rect.right > window.innerWidth) {
+        thumbnailActive.scrollIntoView({ behavior: 'smooth', inline: 'nearest' });
+    }
+}
+
+// click thumbnail
+thumbnails.forEach((thumbnail, index) => {
+    thumbnail.addEventListener('click', () => {
+        itemActive = index;
+        showSlider();
+    })
+})

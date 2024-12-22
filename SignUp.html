@@ -1,131 +1,135 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <title>AxA Hotels</title>
     <meta charset="UTF-8">
-    <meta name="description" content="QuickStay Hotel Booking App">
-    <meta name="author" content="Akshat Dwivedi">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
-    <link rel="stylesheet" href="Bootstrap/css/bootstrap.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Space+Grotesk:wght@300..700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="index.css">
-    <script src="Jquery/jquery-3.6.4.min.js"></script>
-    <script src="Jquery/jquery-ui.min.js"></script>
-    
-</head>
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            background-image: url("https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?cs=srgb&dl=pexels-pixabay-261102.jpg&fm=jpg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            position: relative;
+            height: 100vh;
+        }
+        .signup-container {
+            max-width: 500px;
+            margin:auto;
+            padding: 20px;
+            background: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            
+        }
+        .btn{
+            background-color: #0081cc;
+            color: #ffffff;
+        }
+        .shadow{
+            content: "";
+            position: absolute;
+            z-index: 2;
+            
+            background-color: rgba(0, 0, 0, 0.442);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+        }
+        .signup-container{
+            position: relative;
+            z-index: 3;
+        }
 
+    </style>
+</head>
 <body>
-    <div class="container-fluid SignUpBody" >
-        
-            <div class="SignUpGlass">
-                <div class="col-md-12">
-                    <div class="row px-3">
-                        <div class="col-md-6">
-                            <h1 class="textMainLoginHead py-5 text-white">QuickStay - Where every journey feels like home</h1>
-                            <p class="text-justify text-white textSubLogin">Find the comfort of home amenities, in every city - Choose QuickStay.</p>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card">
-                                <h3 class="text-start py-2 text-white mt-2 px-3 text-card-head">SignUp</h3>
-                                <div class="card-body px-2 mx-2">
-                                    <div class="row justify-content-center align-items-center">
-                                            <div class="form-floating mb-3 " style="background: none;">
-                                                <input type="text" class="form-control" id="name" placeholder="Name" required>
-                                                <label for="floatingInput" class="mx-3">Full Name</label>
-                                              </div>
-                                        </div>
-                                    </div>
-                                    <div class="row justify-content-center align-items-center mx-2">
-                                        <div class="col-md-6">
-                                            <div class="form-floating mb-3" style="background: none;">
-                                                <input type="email" class="form-control" id="email" placeholder="name@example.com">
-                                                <label for="floatingInput">Email address</label>
-                                              </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-floating mb-3" style="background: none;">
-                                                <input type="text" class="form-control" id="number" placeholder="Phone Number">
-                                                <label for="floatingInput">Phone number</label>
-                                              </div>
-                                        </div>
-                                    </div>
-                                    <div class="row justify-content-center align-items-center mx-2">
-                                        <div class="col-md-4">
-                                            <div class="form-floating mb-3" style="background: none;">
-                                                <input type="text" class="form-control" id="floatingInput" placeholder="Country">
-                                                <label for="floatingInput">Country</label>
-                                              </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-floating mb-3" style="background: none;">
-                                                <input type="text" class="form-control" id="floatingInput" placeholder="State">
-                                                <label for="floatingInput">State</label>
-                                              </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-floating mb-3" style="background: none;">
-                                                <input type="text" class="form-control" id="floatingInput" placeholder="City">
-                                                <label for="floatingInput">City</label>
-                                              </div>
-                                        </div>
-                                    </div>
-                                    <div class="row justify-content-center align-items-center mx-2">
-                                        <div class="col-md-6">
-                                            <div class="form-floating mb-3" style="background: none;">
-                                                <input type="password" class="form-control" id="password" placeholder="Old password">
-                                                <label for="floatingInput">Password</label>
-                                              </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-floating mb-3" style="background: none;">
-                                                <input type="password" class="form-control" id="confirmPassword" placeholder="password">
-                                                <label for="floatingInput">Re Enter Password</label>
-                                              </div>
-                                        </div>
-                                    </div>
-                                    
-                                      <div class="col-12 my-3 text-center">
-                                        
-                                        <button class="btn btn-outline-light" id="registerButton" >Register</button>
-                                      </div>
-                                      <div class="col-md-12">
-                                        <div class="row d-flex">
-                                            <div class="col-md-6">
-                                                <div class="col-md-12">
-                                                    <span class="text-white d-flex-inline" style="font-size: 14px;"></span>
-                                                </div>
-                                                
-                                            </div>
-                                            <div class="col-md-6">
-                                                <span class="text-white" style="font-size: 14px;">Already an User ? Please Click on<a class="btnClick" href="Login.html" type="button">&nbsp;Login</a></span>
-                                            </div>
-                                        </div>
-                                      </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                                        </div>
-                </div>
-               
-               
+    <div class="shadow"></div>
+    <div style="padding: 5% 0;">
+    <div class="signup-container">
+        <h2 class="text-center">Sign Up</h2>
+        <form id="signupForm">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" placeholder="Enter your username" required>
             </div>
-          
-        
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
+            </div>
+            <div class="mb-3">
+                <label for="phone" class="form-label">Phone Number</label>
+                <input type="text" class="form-control" id="phone" placeholder="Enter your phone number" required>
+            </div>
+            <button type="button" id="signupButton" class="btn w-100">Sign Up</button>
+        </form>
+        <div id="message" class="text-center mt-3"></div>
     </div>
-    <script src="signup.js"></script>
-    
+</div>
+    <script>
+        document.getElementById("signupButton").addEventListener("click", async function () {
+            const username = document.getElementById("username").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const phone = document.getElementById("phone").value;
+        
+            const apiUrl = "https://hotelrev-eight.vercel.app/hotel/api/auth/signup";
+        
+            try {
+                const response = await fetch(apiUrl, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        username,
+                        email,
+                        password,
+                        phone
+                    })
+                });
+        
+                const data = await response.json();
+        
+                const messageDiv = document.getElementById("message");
+        
+                if (response.ok) {
+                    // استخراج اسم المستخدم من البريد الإلكتروني
+                    const emailPrefix = email.split('@')[0];
+        
+                    // تخزين اسم المستخدم في localStorage
+                    localStorage.setItem('username', emailPrefix);
+        
+                    // عرض رسالة ترحيب
+                    alert(`Welcome back, ${emailPrefix}!`);
+        
+                    // تحديث رسالة النجاح
+                    messageDiv.innerHTML = `<p class="text-success">Registration successful!</p>`;
+                    
+                    // التوجيه إلى الصفحة الرئيسية بعد تسجيل الدخول
+                    setTimeout(() => {
+                        window.location.href = "index.html";
+                    }, 2000);
+                    
+                } else {
+                    // عرض رسالة فشل
+                    messageDiv.innerHTML = `<p class="text-danger">Registration failed: ${data.message || "Unknown error"}</p>`;
+                }
+                
+            } catch (error) {
+                console.error("Error:", error);
+                document.getElementById("message").innerHTML = `<p class="text-danger">An error occurred. Please try again later.</p>`;
+            }
+        });
+        
+    </script>
 </body>
 </html>

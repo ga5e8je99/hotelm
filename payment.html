@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Bootstrap/css/bootstrap.min.css">
+    <title>Hotel Payment Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://www.usatoday.com/gcdn/-mm-/05b227ad5b8ad4e9dcb53af4f31d7fbdb7fa901b/c=0-64-2119-1259/local/-/media/USATODAY/USATODAY/2014/08/13/1407953244000-177513283.jpg');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            position: relative;
+            height: 100vh;
+            
+        }
+        .shadow{
+            content: "";
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.382);
+            z-index: 2;
+            top: 0;
+            left: 0
+        }
+
+        .payment-container {
+            background: #fff;
+            padding: 20px 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            width: 100%;
+            max-width: 400px;
+            position: absolute;
+            z-index: 3;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            
+        }
+
+        .payment-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-size: 14px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #f39c12;
+        }
+
+        .pay-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #f39c12;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .pay-btn:hover {
+            background-color: #0081cc;
+        }
+
+        .error {
+            color: red;
+            font-size: 13px;
+            margin-top: -10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="shadow"></div>
+    <div class="payment-container">
+        <h2>Hotel Payment</h2>
+        
+        <form id="payment-form">
+            <div class="form-group">
+                <label for="card-name">Cardholder Name</label>
+                <input type="text" id="card-name" placeholder="Enter cardholder name" required>
+                <div class="error" id="name-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="card-number">Card Number</label>
+                <input type="text" id="card-number" placeholder="Enter card number" maxlength="16" required>
+                <div class="error" id="number-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="expiry-date">Expiry Date</label>
+                <input type="text" id="expiry-date" placeholder="MM/YY" maxlength="5" required>
+                <div class="error" id="expiry-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="cvv">CVV</label>
+                <input type="password" id="cvv" placeholder="CVV" maxlength="3" required>
+                <div class="error" id="cvv-error"></div>
+            </div>
+            <button type="button" class="pay-btn" id="pay-btn">Pay Now</button>
+        </form>
+    </div>
+    <script src="Bootstrap/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('pay-btn').addEventListener('click', function () {
+            const name = document.getElementById('card-name').value;
+            const number = document.getElementById('card-number').value;
+            const expiry = document.getElementById('expiry-date').value;
+            const cvv = document.getElementById('cvv').value;
+
+            // Simple validations
+            let isValid = true;
+
+            if (!name.trim()) {
+                isValid = false;
+                document.getElementById('name-error').textContent = 'Name is required.';
+            } else {
+                document.getElementById('name-error').textContent = '';
+            }
+
+            if (!/^[0-9]{16}$/.test(number)) {
+                isValid = false;
+                document.getElementById('number-error').textContent = 'Invalid card number.';
+            } else {
+                document.getElementById('number-error').textContent = '';
+            }
+
+            if (!/^(0[1-9]|1[0-2])\/[0-9]{2}$/.test(expiry)) {
+                isValid = false;
+                document.getElementById('expiry-error').textContent = 'Invalid expiry date.';
+            } else {
+                document.getElementById('expiry-error').textContent = '';
+            }
+
+            if (!/^[0-9]{3}$/.test(cvv)) {
+                isValid = false;
+                document.getElementById('cvv-error').textContent = 'Invalid CVV.';
+            } else {
+                document.getElementById('cvv-error').textContent = '';
+            }
+
+            if (isValid) {
+                alert('Payment Successful!');
+                open('index.html')
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #eef2f7;
+            font-family: 'Roboto', sans-serif;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-control {
+            margin-bottom: 15px;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 10px;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="heading">
+            <h1>Complete Your Booking</h1>
+        </div>
+        <div id="modelDetails" class="mb-4">
+            <!-- سيتم عرض تفاصيل النموذج هنا -->
+        </div>
+        <form id="bookingForm">
+            <div class="mb-3">
+                <label for="name" class="form-label">Your Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+            </div>
+            <div class="mb-3">
+                <label for="date" class="form-label">Booking Date</label>
+                <input type="date" class="form-control" id="date" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Confirm Booking</button>
+        </form>
+    </div>
+
+    <script>
+        // استرجاع بيانات النموذج من LocalStorage
+        const selectedModel = JSON.parse(localStorage.getItem('selectedModel'));
+
+        if (selectedModel) {
+            const modelDetailsContainer = document.getElementById('modelDetails');
+
+            // عرض تفاصيل النموذج
+            modelDetailsContainer.innerHTML = `
+                <div class="card">
+                    <img src="${selectedModel.image}" class="card-img-top" alt="${selectedModel.type}">
+                    <div class="card-body">
+                        <h5 class="card-title">${selectedModel.type}</h5>
+                        <p><strong>Max People:</strong> ${selectedModel.maxPeople}</p>
+                        <p><strong>Price:</strong> $${selectedModel.price}</p>
+                        <p><strong>Features:</strong> ${selectedModel.features}</p>
+                    </div>
+                </div>
+            `;
+        } else {
+            alert("No model data available!");
+            window.location.href = 'index.html'; // إعادة التوجيه إلى الصفحة الرئيسية
+        }
+
+        // معالجة النموذج عند الإرسال
+        document.getElementById('bookingForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert("Booking confirmed! Thank you.");
+            window.location.href = 'index.html'; // إعادة التوجيه إلى الصفحة الرئيسية
+        });
+    </script>
+</body>
+</html>
